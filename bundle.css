@@ -1,0 +1,336 @@
+
+    .hcpb-section {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #F2F2F2;
+      padding: 48px 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .hcpb-inner {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Header ---------- */
+    .hcpb-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hcpb-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #000;
+      line-height: 1.3;
+      margin: 0 0 10px;
+    }
+
+    .hcpb-subtitle {
+      font-size: 17px;
+      font-weight: 400;
+      color: #000;
+      margin: 0 0 16px;
+    }
+
+    .hcpb-order-label {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      text-decoration: underline;
+      margin: 0 0 16px;
+    }
+
+    /* ---------- Checklist ---------- */
+    .hcpb-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: left;
+    }
+
+    .hcpb-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .hcpb-checklist li img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Low stock badge ---------- */
+    .hcpb-stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid #E9E9E9;
+      border-radius: 999px;
+      padding: 8px 18px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .hcpb-stock-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #FF6B00;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Cards grid ---------- */
+    .hcpb-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    /* ---------- Single card ---------- */
+    .hcpb-card {
+      background: #fff;
+      border: 1px solid #CCCCCC;
+      border-radius: 16px;
+      box-shadow: 0 0 20px 0 rgba(18,18,18,0.10);
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+      position: relative;
+    }
+
+    .hcpb-card--popular {
+      border: 2px solid #D63837;
+    }
+
+    /* top badge */
+    .hcpb-card-badge {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      background: #D63837;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 16px 0 16px 0;
+      white-space: nowrap;
+      line-height: 1.8;
+    }
+
+    .hcpb-card-badge--sale {
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 16px 0 16px 0;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      line-height: 1.8;
+    }
+
+    /* image row */
+    .hcpb-card-img-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 20px 16px 0;
+    }
+
+    .hcpb-card-img {
+      width: 100px;
+      height: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .hcpb-card-qty-badge {
+      display: inline-block;
+      background: #D4EAD8;
+      color: #27953D;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 4px 8px;
+      line-height: 1.8;
+      margin-top: -25px;
+    }
+
+    /* card body */
+    .hcpb-card-body {
+      padding: 12px 16px 0;
+      flex: 1;
+    }
+
+    .hcpb-card-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 4px;
+      line-height: 1.5;
+    }
+
+    .hcpb-card-off {
+      font-size: 14px;
+      font-weight: 700;
+      color: #27953D;
+      margin: 0 0 2px;
+    }
+
+    .hcpb-card-total {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin: 0 0 2px;
+    }
+
+    .hcpb-card-was {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      margin: 0 0 2px;
+    }
+
+    .hcpb-card-was s {
+      text-decoration: line-through;
+    }
+
+    .hcpb-card-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ED3B47;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+
+    /* CTA button */
+    .hcpb-card-cta {
+      display: block;
+      width: 100%;
+      background: #27953D;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px 0 #57BC90;
+      transition: background 0.2s ease;
+      margin: 0 16px;
+      width: calc(100% - 32px);
+      box-sizing: border-box;
+    }
+
+    .hcpb-card-cta:hover {
+      background: #1e7a32;
+    }
+
+    .hcpb-card-guarantee {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      padding: 10px 16px 16px;
+      margin: 0;
+    }
+
+    /* ---------- Footer ---------- */
+    .hcpb-footer {
+      text-align: center;
+    }
+
+    .hcpb-footer-line {
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+      margin: 0 0 4px;
+      line-height: 1.8;
+    }
+
+    .hcpb-footer-line strong {
+      font-weight: 700;
+      color: #000;
+    }
+
+    .hcpb-footer-line small {
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .hcpb-payment-box {
+      display: inline-block;
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 24px;
+      margin-top: 12px;
+    }
+
+    .hcpb-payment-label {
+      font-size: 14px;
+      color: #333;
+      margin: 0 0 8px;
+    }
+
+    .hcpb-payment-img {
+      max-width: 240px;
+      height: auto;
+    }
+
+    /* ============================================================
+       RESPONSIVE — tablet (≤ 900px): 2 columns
+    ============================================================ */
+    @media (max-width: 900px) {
+      .hcpb-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — mobile (≤ 540px): 1 column
+    ============================================================ */
+    @media (max-width: 540px) {
+      .hcpb-section {
+        padding: 32px 12px;
+      }
+
+      .hcpb-title {
+        font-size: 22px;
+      }
+
+      .hcpb-subtitle {
+        font-size: 15px;
+      }
+
+      .hcpb-cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hcpb-card-cta {
+        font-size: 15px;
+      }
+
+      .hcpb-footer-line {
+        font-size: 14px;
+      }
+    }
