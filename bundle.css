@@ -180,7 +180,7 @@
 
         .hcpb-card-img {
             width: 147px;
-            height: auto;
+            height: 147px;
             object-fit: contain;
             display: block;
         }
