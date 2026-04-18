@@ -211,12 +211,14 @@
         }
 
         .hcpb-card-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 5px;
-            line-height: 1.4;
-        }
+    font-size: 16px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
         .hcpb-card-off {
             font-size: 14px;
