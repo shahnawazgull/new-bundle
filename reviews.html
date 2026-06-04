@@ -1,0 +1,577 @@
+<!-- =============================================
+     STATIC REVIEWS SECTION — Loox-style redesign
+     Drop this block wherever the Loox widget was
+     ============================================= -->
+
+<!-- Inline SVG sprite (Loox icons) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="looxicons-rating-icon" viewBox="0 0 24 24">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+  </symbol>
+  <symbol id="loox-ic-verified-icon" viewBox="0 0 24 24">
+    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" fill="none" stroke="#1a8a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<style>
+/* ── Variables ── */
+:root {
+  --rv-star: #EBBF20;
+  --rv-text: #1a1a1a;
+  --rv-muted: #6b7280;
+  --rv-border: #e5e7eb;
+  --rv-bg: #ffffff;
+  --rv-card-radius: 12px;
+  --rv-gap: 12px;
+  --rv-font: inherit;
+}
+
+/* ── Container ── */
+.rv-section {
+  font-family: var(--rv-font);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  color: var(--rv-text);
+}
+
+/* ── Header ── */
+.rv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+  border-bottom: 1px solid var(--rv-border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rv-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rv-avg {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rv-stars-row {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.rv-stars-row svg {
+  width: 20px;
+  height: 20px;
+  color: var(--rv-star);
+}
+
+.rv-count {
+  font-size: 14px;
+  color: var(--rv-muted);
+  margin-top: 2px;
+}
+
+/* ── Masonry grid ── */
+.rv-grid {
+  column-count: 4;
+  column-gap: var(--rv-gap);
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .rv-grid { column-count: 3; }
+}
+
+@media (max-width: 700px) {
+  .rv-grid { column-count: 2; }
+}
+
+@media (max-width: 520px) {
+  .rv-grid { column-count: 2; }
+}
+
+/* ── Card ── */
+.rv-card {
+  break-inside: avoid;
+  background: var(--rv-bg);
+  border: 1px solid var(--rv-border);
+  border-radius: var(--rv-card-radius);
+  overflow: hidden;
+  margin-bottom: var(--rv-gap);
+  display: inline-block; /* needed for column layout */
+  width: 100%;
+}
+
+.rv-card-img {
+  width: 100%;
+  display: block;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+.rv-card-body {
+  padding: 12px 14px 14px;
+}
+
+/* ── Reviewer name + verified ── */
+.rv-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.rv-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.rv-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #1a8a1a;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.rv-verified svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* ── Stars ── */
+.rv-card-stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.rv-card-stars svg {
+  width: 14px;
+  height: 14px;
+  color: var(--rv-star);
+}
+
+/* ── Review text ── */
+.rv-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #374151;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.rv-text.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+.rv-read-more {
+  background: none;
+  border: none;
+  padding: 4px 0 0;
+  font-size: 12px;
+  color: var(--rv-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  display: none;
+}
+
+/* Show read-more only when text is actually clamped */
+.rv-card:has(.rv-text.clampable) .rv-read-more {
+  display: inline-block;
+}
+
+/* ── Load more button ── */
+.rv-load-more-wrap {
+  text-align: center;
+  padding: 24px 0 8px;
+}
+
+.rv-load-more {
+  display: inline-block;
+  padding: 11px 28px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  font-family: inherit;
+}
+
+.rv-load-more:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+</style>
+
+<div class="rv-section">
+<div style="text-align:center; padding: 40px 16px 0;">
+  <p style="font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#EBBF20; margin:0 0 8px;">Real Results, Real People</p>
+  <h2 style="font-size:clamp(24px, 4vw, 36px); font-weight:700; margin:0 0 10px; line-height:1.2;">What Our Customers Are Saying</h2>
+  <p style="font-size:15px; color:#6b7280; margin:0 auto; max-width:480px; line-height:1.6;">Over 341 verified buyers sharing their experience with the ReliveX Adaptive Correction System.</p>
+</div>
+  <!-- Header -->
+  <div class="rv-header">
+    <div class="rv-header-left">
+      <span class="rv-avg">4.9</span>
+      <div>
+        <div class="rv-stars-row">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-count">341 Reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Masonry grid -->
+  <div class="rv-grid">
+
+    <!-- 1. Emma V. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/11/5/Y06GIgU5l.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Emma V.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I was told surgery was my only option for severe nerve compression from stenosis. But the ReliveX System is totally different from that cheap NMES I tried years ago. It has a power and depth that literally forces my stabilizing muscles to 'turn back on,' breaking that Core Muscle Lockout. My need for daily painkillers has dropped by 80%. If you have chronic Stenosis pain, skip the injections—get this system instead.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 2. Olivia B. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/11/5/vK-nVPdtG.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Olivia B.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text">Finally, a device that really works and is easy to use! I can use it while going about my daily tasks. The gel pads stay in place, and the results are fantastic.</div>
+      </div>
+    </div>
+
+    <!-- 3. Sandy S. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/11/5/IT2YF5rbE.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Sandy S.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">Diagnosed with Lumbar Spinal Stenosis, I couldn't sit for more than 15 minutes or walk across the parking lot without crippling pain. This Adaptive Correction System is the first thing that actually provided decompression. The deep pulses feel like they're finally taking pressure off my nerves. I'm now back to sitting through dinner and walking my dog without that terrible leg numbness. Huge quality of life improvement.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 4. Benjamin D. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/11/5/AbVTjaAXe.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Benjamin D.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">Spinal stenosis made my legs feel like dead weight after standing for too long. ReliveX has genuinely changed my life. The deep, adaptive pulses are unlike anything I've tried; they truly wake up those inactive core muscles. My sciatica is almost non-existent now, and I can enjoy gardening again without constant dread. This is real structural support.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 5. Emily J. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/A2eDFVtX3Qyk.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Emily J.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">After years of trying everything for my back and shoulder pain – from ointments to physical therapy – I was pretty skeptical. But this massage set truly surprised me. The stimulation feels pleasant and relaxes my muscles in a way I've never experienced before. What I love most: I no longer have to leave the house for relief, and I can use it whenever it suits me. I just wish I had discovered this sooner!</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 6. Olivia T. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/L4wRsDs6TaaK.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Olivia T.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I've been using the massage set for a few weeks now to treat my lower back pain, which I've had for years. I was a bit skeptical at first, but the results truly surprised me. The stimulation feels firm but not painful, and my muscles noticeably relax. I usually use it in the evening on the couch—it's really become a moment of calm for me. I also love that you're not tied to a wall socket thanks to the charging case.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 7. Scarlett I. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/h74U29sLlGtd.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Scarlett I.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">Finally, a device that really works and is easy to use! I can use it while going about my daily tasks. The gel pads stay in place, and the results are fantastic. Scarlett I.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 8. Sophia C. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/BSyeSlAosJHj.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Sophia C.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">After years of working at a desk, my lower back pain had become chronic. I've tried heat pads, massages, physiotherapy — nothing gave lasting relief. Since using this massage set, I feel so much more mobile in the morning. The pulses are intense yet comfortable. I now use it every evening as part of my wind-down routine.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 9. Riley W. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/5WggIUg7o.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Riley W.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I've been using the massage set for a few weeks now to relieve my lower back pain, which I've been dealing with for years. I was a bit skeptical at first, but the results truly surprised me. The stimulation feels strong but not painful, and my muscles noticeably relax. I usually use it in the evening on the couch—it's really become a calming moment in my day. Also great: you're not dependent on a wall socket thanks to the rechargeable case.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 10. Ava D. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/Qr72-QdBIN.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Ava D.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">After a herniated disc surgery, I continued to struggle with lower back pain. Physical therapy helped temporarily, but the pain kept coming back. Since I started using this massage set, I've noticed that my muscles stay more relaxed, which helps me move more easily. The adhesive pads stay in place well and are easy to reuse. It's a small investment, but in my opinion, absolutely worth it.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 11. Nora V. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/BVj_3imqG.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Nora V.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text">I never thought such a small device could be this powerful. After 15 minutes, I feel much more flexible. My neck especially feels less tense. I use it daily now.</div>
+      </div>
+    </div>
+
+    <!-- 12. Isabella K. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/mG-UuebEH.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Isabella K.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I initially bought this massage set for my lower back pain, which I've been struggling with for years. To my surprise, I also noticed it works well for the pain in my upper leg, which often radiates from my back. I sometimes place the adhesive pads on my buttock or thigh, and it really brings relief—especially after a day of walking or standing. I love that I can choose where to use it and that it's so versatile. I didn't expect one device to work so well for multiple issues.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 13. Mason L. -->
+    <div class="rv-card">
+      <img class="rv-card-img" src="//images.loox.io/uploads/2025/7/22/s49c-JdQA.jpg" alt="Customer review photo" loading="lazy">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Mason L.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">After retiring, I wanted to start walking more, but my lower back wasn't cooperating. My daughter told me about this massage set, and I'm so grateful she did. After a long walk, I use the device for 15 minutes and really feel the difference. It feels like I'm taking better care of my muscles. Plus, it's very easy to use—even for someone who's not tech-savvy.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 14. Sky (no verified) -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Sky</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I've been using mine for about 2 weeks now and was pretty skeptical about it giving me any relief from my slipped vertebrae (L4 over L5), severe Osteoarthritis in S1 and spinal stenosis, plus 2 herniated disks! I was getting painful sciatica daily but I can honestly say, that since using the ReliveX, my sciatica has really calmed down and improved…Amazing! I love this little device, it's so easy to use and if I keep improving with this as time goes by, I won't be needing the back op they want...</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 15. Jacqueline R. (no verified) -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Jacqueline R.</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text">It is the only device I have found that actually helps. I can now cook etc without having to sit every few minutes.</div>
+      </div>
+    </div>
+
+    <!-- 16. Susan M. (no verified) -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Susan M.</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">I was sceptical at first because I had spent a fortune on supposed helpful things. However I thought one last thing to try. And I am so pleased I did — it is like a tens machine without the wires so you can sit to work, lie down and relax. I use mine every morning and now get relief all day from the pain that Stenosis gives so give it a try. I am pleased and surprised at the relief I get with ReliveX.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 17. Mia P. -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Mia P.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text">Easy to apply and pleasant to use. The pulses are strong but never painful. I can feel my muscles truly relaxing. Ideal for travel or working from home.</div>
+      </div>
+    </div>
+
+    <!-- 18. Amelia W. -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Amelia W.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text">My hernia pain hasn't disappeared, of course, but this set definitely helps. Especially during quiet moments or before bed. It eases the sharp edge of the pain. I use it faithfully every day.</div>
+      </div>
+    </div>
+
+    <!-- 19. Logan H. -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Logan H.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">Been using it for three weeks now and clearly feel a difference in my lower back. I sleep better and wake up less stiff. The charging case works perfectly and keeps the massagers secure. Very satisfied!</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+    <!-- 20. Harper V. -->
+    <div class="rv-card">
+      <div class="rv-card-body">
+        <div class="rv-name-row">
+          <span class="rv-name">Harper V.</span>
+          <span class="rv-verified"><svg viewBox="0 0 24 24"><use href="#loox-ic-verified-icon"/></svg>Verified</span>
+        </div>
+        <div class="rv-card-stars">
+          <svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg><svg viewBox="0 0 24 24"><use href="#looxicons-rating-icon"/></svg>
+        </div>
+        <div class="rv-text clampable">After much hesitation I bought it, and I have no regrets. The massages are powerful and provide immediate relief. The adhesive pads stay on well, even when you move. I recommend it to friends and family.</div>
+        <button class="rv-read-more" onclick="toggleReadMore(this)">Read more</button>
+      </div>
+    </div>
+
+  </div><!-- /.rv-grid -->
+
+  <!-- Load more -->
+  <div class="rv-load-more-wrap">
+    <button class="rv-load-more">Show more reviews</button>
+  </div>
+
+</div><!-- /.rv-section -->
+
+<script>
+function toggleReadMore(btn) {
+  var text = btn.previousElementSibling;
+  var expanded = text.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Read more';
+}
+
+// Show read-more buttons only where text is actually overflowing
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.rv-text.clampable').forEach(function (el) {
+    if (el.scrollHeight > el.clientHeight + 2) {
+      el.nextElementSibling && (el.nextElementSibling.style.display = 'inline-block');
+    }
+  });
+});
+</script>

@@ -1,0 +1,638 @@
+/* ── Wrapper (max-width: 1200px from live site) ── */
+.bundle-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* ── Section heading (28px / weight 700 / 130% lh from live site) ── */
+.bundle-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 130%;
+  text-align: center;
+  color: #000;
+  margin-bottom: 32px;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   CARDS ROW — desktop 3-col, mobile stacked
+══════════════════════════════════════════════════════ */
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+/* ── Single card base ── */
+.bundle-card {
+  background: #FFFFFF;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #4F4F4F;
+  box-shadow: 0px 0px 20px 0px rgba(18, 18, 18, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+
+.card--grey {
+  border-color: #4F4F4F;
+}
+
+.card--orange {
+  border-width: 2px;
+  border-color: #F46225;
+}
+
+/* ── Card title wrapper (full-width banner area) ── */
+.card-title-wrap {
+  width: 100%;
+  padding: 10px 0 0 0;
+  margin-bottom: 12px;
+}
+
+/* Orange banner for Best Value (no top padding, sits flush) */
+.card-title-wrap--orange {
+  background: #F46225;
+  padding: 10px 0;
+  margin-top: -1px;
+  margin-bottom: 12px;
+}
+
+/* ── Card title (22px / weight 700 / black) ── */
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  color: #000;
+  text-align: center;
+}
+
+.card-title--white {
+  color: #FCFCFC;
+}
+
+/* ── Card subtitle (Triple Bundle text - 22px/700) ── */
+.card-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* ── Rating row (16px / weight 500) ── */
+.card-rating {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* ── Card image wrap (padded 20px sides) ── */
+.card-img-wrap {
+  padding: 0 20px;
+  margin-bottom: 0;
+}
+
+.card-img {
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── Pack name (22px from live site) ── */
+.pack-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.3;
+  text-align: center;
+  color: #121212;
+  margin-top: 5px;
+  padding: 0 8px;
+}
+
+/* ── Price main ── */
+.price-main {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  line-height: 150%;
+  margin-top: 0;
+  padding: 0 8px;
+}
+
+/* Card 1 - "Only £1 Each" - 18px / green #0B8B00 */
+.price-main--green {
+  font-size: 18px;
+  color: #0B8B00;
+}
+
+/* Card 3 - "Only £2 each" - 19px / green #0B8B00 (slightly bigger) */
+.price-main--green-lg {
+  font-size: 19px;
+  color: #0B8B00;
+}
+
+/* Card 2 - "Only £3 Each" - 18px / red #ED3B47 */
+.price-main--red {
+  font-size: 18px;
+  color: #ED3B47;
+}
+
+/* ── Instead-of / Total line (14px / weight 600) ── */
+.price-instead {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+  color: #121212;
+  padding: 0 8px;
+  margin-bottom: 12px;
+}
+
+.price-instead s {
+  text-decoration: line-through;
+}
+
+.price-instead strong {
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════════════
+   ORDER BUTTONS (10px radius, 12px vertical padding,
+   Montserrat 20px bold, white text)
+══════════════════════════════════════════════════════ */
+.btn-order {
+  display: block;
+  margin: 0 24px 6px 24px;
+  padding: 12px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 150%;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(244, 248, 252);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-radius 0.2s ease;
+}
+
+.btn-order:hover {
+  border-radius: 4px;
+}
+
+.btn-order--grey {
+  background: #959595;
+}
+
+.btn-order--grey:hover {
+  background: #7a7a7a;
+}
+
+.btn-order--orange {
+  background: #F46225;
+}
+
+.btn-order--orange:hover {
+  background: #d54f15;
+}
+
+.btn-order--dark {
+  background: #4F4F4F;
+}
+
+.btn-order--dark:hover {
+  background: #2f2f2f;
+}
+
+/* ── Guarantee text (13px / weight 600) ── */
+.guarantee-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 150%;
+  text-align: center;
+  color: #121212;
+  margin: 0 8px 30px 8px;
+}
+
+.card--orange .guarantee-text,
+.card--grey:last-child .guarantee-text {
+  margin-bottom: 15px;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   TRUST / GUARANTEE SECTION
+══════════════════════════════════════════════════════ */
+.trust-section {
+  width: 100%;
+  margin-top: 0;
+  padding: 0 16px;
+}
+
+/* Returns line - 24px / bold strong */
+.trust-returns {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.trust-returns strong {
+  font-weight: 700;
+}
+
+.trust-inner {
+  padding: 16px;
+  margin-bottom: 0;
+}
+
+/* "30-day money back guarantee" - 20px regular */
+.trust-trial {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* "Help: Email support..." - 26px bold */
+.trust-help {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Trust list */
+.trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+.trust-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 180%;
+  color: #121212;
+}
+
+.trust-list li strong {
+  font-weight: 700;
+  color: #000;
+}
+
+.trust-list li span {
+  color: #000;
+}
+
+/* Trust icon (image-based, 70% scale matching live site) */
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Payment divider lines (top & bottom of payment image) */
+.payment-divider {
+  margin: 12px 450px;
+  border-bottom: 2px solid #d0d0d0;
+  padding: 0;
+}
+
+/* Payment methods image (40% width from live site) */
+.payment-methods {
+  text-align: center;
+  margin: 0;
+}
+
+.payment-methods img {
+  width: 40%;
+  height: auto;
+  max-width: 100%;
+  display: inline-block;
+}
+
+/* ── Mobile-only pill tag (hidden on desktop) ── */
+.card-pill {
+  display: none;
+}
+
+/* ── Mobile-only card title (hidden on desktop). Used on card 2
+   so its right-column header on mobile reads "3× FizzClean™"
+   while desktop continues to show the "Best Value" orange banner. */
+.card-title-mobile {
+  display: none;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   TABLET (≤1024px)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  .bundle-heading {
+    font-size: 32px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-subtitle {
+    font-size: 16px;
+  }
+
+  .card-rating {
+    font-size: 16px;
+  }
+
+  .pack-name {
+    font-size: 22px;
+  }
+
+  .price-main--green,
+  .price-main--green-lg,
+  .price-main--red {
+    font-size: 16px;
+  }
+
+  .price-instead {
+    font-size: 16px;
+  }
+
+  .btn-order {
+    font-size: 18px;
+  }
+
+  .trust-returns { font-size: 20px; }
+  .trust-trial   { font-size: 20px; }
+  .trust-help    { font-size: 20px; }
+
+  .payment-divider {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE (≤768px)
+   Horizontal card layout: image left, content right,
+   pill-tag in top-left corner. Cards reordered:
+   3× Best Value → 2× Most Popular → 1× Trial Price.
+══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  
+
+  .bundle-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Stack cards vertically and reorder via flexbox-style order */
+  .cards-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 1rem;
+  }
+
+  .card--best    { order: 1; }  /* 3× FizzClean (Best Value) — first */
+  .card--popular { order: 2; }  /* 2× FizzClean (Most Popular) — second */
+  .card--trial   { order: 3; }  /* 1× FizzClean (Trial Price) — last */
+
+  /* Card becomes a 2-column / 5-row grid: image | stacked content */
+  .bundle-card {
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: #4F4F4F;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    column-gap: 8px;
+    padding: 14px 12px 14px 0;
+    position: relative;
+    overflow: visible;
+  }
+
+  .card--orange {
+    border-color: #F46225;
+    border-width: 2px;
+  }
+
+  /* Neutralize the desktop banner-style title-wrap on mobile.
+     display: contents makes the wrap "transparent" to layout —
+     card-title participates directly in the card grid. */
+  .card-title-wrap,
+  .card-title-wrap--orange {
+    display: contents;
+  }
+
+  /* Card 2: hide its original card-title ("Best Value", meant for
+     the desktop orange banner) and show the mobile-only header. */
+  .card--best .card-title {
+    display: none;
+  }
+
+  .card--best .card-title-mobile {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #000;
+    margin: 0 0 8px 0;
+    padding: 22px 4px 0 4px;
+    text-align: center;
+  }
+
+  /* ── Pill tag in top-left corner (mobile-only element) ── */
+  .card-pill {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 6px 18px;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    border-radius: 0 0 10px 0;
+    z-index: 2;
+  }
+
+  .card-pill--orange { background: #F46225; }
+  .card-pill--dark   { background: #4F4F4F; }
+  .card-pill--grey   { background: #959595; }
+
+  /* Hide subtitle, rating, and pack-name on mobile (card-title takes over as header) */
+  .card-subtitle,
+  .card-rating,
+  .pack-name {
+    display: none;
+  }
+
+  /* ── Image on the left, spans all rows ── */
+  .card-img-wrap {
+    grid-column: 1;
+    grid-row: 1 / 6;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    padding-top: 18px; /* clearance below pill tag */
+  }
+
+  .card-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ── Right-column content, explicit row placement ── */
+  /* card-title becomes the prominent header on mobile */
+  .card-title {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #000;
+    margin: 0 0 8px 0;
+    padding: 22px 4px 0 4px; /* clearance below pill tag */
+    text-align: center;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* Card 2's title text was "Best Value" (designed for the orange banner).
+     On mobile we want it to read like the other cards — but since we can't
+     change the HTML further, we just show it as-is in plain black. */
+  .card-title--white {
+    color: #000;
+  }
+
+  .price-instead {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13px;
+    margin: 0 0 2px 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .price-main {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0 0 6px 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .price-main--green,
+  .price-main--green-lg,
+  .price-main--red {
+    font-size: 16px;
+  }
+
+  .btn-order {
+    grid-column: 2;
+    grid-row: 4;
+    font-size: 17px;
+    padding: 10px 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .guarantee-text {
+    grid-column: 2;
+    grid-row: 5;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 6px 0 0 0;
+    padding: 0 4px;
+    text-align: center;
+  }
+
+  /* Trust section mobile */
+  .trust-section {
+    padding: 0 8px;
+  }
+
+  .trust-returns { font-size: 16px; margin-bottom: 12px; margin-top: 16px; }
+  .trust-trial   { font-size: 15px; }
+  .trust-help    { font-size: 16px; margin-bottom: 16px; }
+
+  .trust-list li {
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .trust-list li strong,
+  .trust-list li span {
+    font-size: 14px;
+  }
+
+  .trust-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .payment-divider {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  .payment-methods img {
+    width: 80%;
+  }
+
+}
